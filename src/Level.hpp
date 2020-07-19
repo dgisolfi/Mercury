@@ -1,5 +1,0 @@
-
-
-namespace level {
-    enum level {};
-};

@@ -1,3 +1,12 @@
+/**
+ * @file Level.h
+ *
+ * @brief Logging Levels for Mecury
+ *
+ * @author Daniel Nicolas Gisolfi
+ * Contact: Daniel.Gisolfi1@marist.edu
+ *
+ */
 
 #define LEVEL_TRACE 0
 #define LEVEL_DEBUG 1
@@ -8,8 +17,8 @@
 #define LEVEL_OFF 6
 
 
-namespace level {
-    enum level {
+namespace mercury {
+    enum Level {
         trace = LEVEL_TRACE,
         debug = LEVEL_DEBUG,
         info = LEVEL_INFO,
@@ -18,5 +27,5 @@ namespace level {
         critical = LEVEL_CRITICAL,
         off = LEVEL_OFF
     };
+    const std::string level_names[7] = {"TRACE", "DEBUG", "INFO", "WARN", "ERROR", "CRITICAL", "OFF"};
 };
-
