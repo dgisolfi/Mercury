@@ -1,0 +1,16 @@
+# Author: Daniel N. Gisolfi
+# Filename: docker-compose.yaml
+# Purpose: for isolated development
+# Usage: `make dev`
+
+version: "3"
+services:
+  mercury:
+    build: .
+    container_name: mercury-dev
+    volumes:
+      - .:/mercury
+      - python-packages:/root/.local/share
+
+volumes:
+  python-packages:

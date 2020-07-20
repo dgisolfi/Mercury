@@ -9,27 +9,33 @@
  */
 
 #pragma once
-// #include <string>
-#include "Level.h"
+#include "Theme.h"
+
 
 namespace mercury {
     class Logger {
         
     private:
+        Logger() {
+            theme = new Theme();
+            log(Level::debug, "Mercury Enabled");
+        }
+        ~Logger() {}
 
-        Logger() {}
+        Theme *theme;
 
         // The single instance
         static Logger instance;
-        Level level = Level::off;
+        Level level = Level::info;
         bool verbose = false;
-        std::string seperator = " - ";
     
-        void log(std::string msg);
+        void log(Level level, std::string msg);
 
         const std::string lTime();
 
-        const std::string buildLog(std::string msg);
+        const std::string buildLog(Level level, std::string msg);
+
+        const bool inLevel(int low, int high, int l);
 
     public:
         // mark the copy constructor to delete
@@ -38,19 +44,19 @@ namespace mercury {
         static Logger& get();
 
         void setLevel(int l);
-        std::string getLevel();
+        std::string getLevelName(Level level);
+        Level getLevel();
 
         void setVerbose(bool v);
 
-        void setSeperator(std::string s);
-        std::string getSeperator();
+        Theme *getTheme();
 
         void trace(std::string msg);
         void debug(std::string msg);
         void info(std::string msg);
         void warn(std::string msg);
-        void error(std::string msg);
         void critical(std::string msg);
+        void error(std::string msg);
         void off();
     };
 };

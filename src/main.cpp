@@ -1,16 +1,23 @@
 #include <iostream>
 #include "Logger.h"
 
+
 int main(int argc, char *argv[]) {
 
-	mercury::Logger &instance = mercury::Logger::get();
-	instance.setLevel(mercury::Level::info);
+	mercury::Logger &mercury = mercury::Logger::get();
+	mercury.setLevel(mercury::Level::trace);
 
-	instance.debug("tap tap...is this thing on?");
-	instance.warn("Yes it's on...Now dont say anything stupid everyone can hear you!");
-	instance.critical("HELLO! WE GOT BIG ISSUES!...WE HAVE NOTHING TO LOG!");
-	instance.debug("tap tap...is this thing on?");
-    instance.info("Nevermind those guys, onto the main event...");
-    instance.info("Hello! Welcome to Mercury, a quick and simple C++ logger.");
+	mercury::Theme *t = mercury.getTheme();
+	t -> setIsTimestampEnabled(false);
+	t -> setLevelNameLen(1);
+	// std::string s = t.apply(mercury::Level::debug, "This is a test");
+
+	// std::cout << s << std::endl;
+	mercury.trace("Turning the fan on");
+	mercury.info("Fan on");
+	mercury.debug("Is there somthing wrong with the fan?");
+	mercury.warn("Yo $#%& may be hitting the fan");
+	mercury.critical("$#%& JUST HIT THE FAN");
+	mercury.error("THE FAN JUST BROKE");
 
 }
