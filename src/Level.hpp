@@ -18,6 +18,7 @@
 
 
 namespace mercury {
+
     enum Level {
         trace = LEVEL_TRACE,
         debug = LEVEL_DEBUG,
@@ -27,6 +28,7 @@ namespace mercury {
         err = LEVEL_ERR,
         off = LEVEL_OFF
     };
+    
     const std::string level_names[7] = {
         /*
          * I have added the needed spaces to make the 

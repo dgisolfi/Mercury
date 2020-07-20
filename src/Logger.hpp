@@ -20,12 +20,14 @@ namespace mercury {
             theme = new Theme();
             log(Level::debug, "Mercury Enabled");
         }
-        ~Logger() {}
+        ~Logger() {
+            delete theme;
+        }
 
         Theme *theme;
 
         // The single instance
-        static Logger instance;
+        static Logger mercury;
         Level level = Level::info;
         bool verbose = false;
     
@@ -61,3 +63,13 @@ namespace mercury {
     };
 };
 
+
+/**
+ * Sum numbers in a vector.
+ *
+ * This sum is the arithmetic sum, not some other kind of sum that only
+ * mathematicians have heard of.
+ *
+ * @param values Container whose values are summed.
+ * @return sum of `values`, or 0.0 if `values` is empty.
+ */

@@ -20,10 +20,6 @@
 #endif
 
 namespace mercury {
-    
-    /*
-    * Public
-    */
 
     Vector2 Theme::getTrace() {
         return Theme::trace;
@@ -113,7 +109,7 @@ namespace mercury {
 
     void Theme::setLevelNameLen(int len) {
         if (len > 8 || len < 0) {
-            // todo
+            throw std::invalid_argument("Length must be between 0 and 8");
         } else {
             Theme::level_name_len = len;
         };

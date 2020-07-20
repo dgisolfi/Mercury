@@ -2,7 +2,7 @@
 
 Lightweight & Colorful Singleton logger
 
-![](./img/default_theme.png)
+![example logs](./img/default_theme.png)
 
 ## Usage
 

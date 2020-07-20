@@ -1,7 +1,7 @@
 /**
  * @file Logger.cpp
  *
- * @brief Logging Class
+ * @brief Singleton Logging Class
  *
  * @author Daniel Nicolas Gisolfi
  * Contact: Daniel.Gisolfi1@marist.edu
@@ -9,9 +9,7 @@
  */
 
 #include <iostream>
-#include <stdio.h>
 #include <time.h>
-#include <stdlib.h> 
 #include "Logger.h"
 
 
@@ -28,7 +26,6 @@ namespace mercury {
     * err => throws error and exits program
     * off => disables logging
     */ 
-
     void Logger::log(Level level, std::string msg){
         std::string l;
 
@@ -88,11 +85,12 @@ namespace mercury {
     /*
     * PUBLIC
     */
+
     // Create the single instance of the logger
-    Logger Logger::instance;
+    Logger Logger::mercury;
    
     Logger& Logger::get() {
-        return instance;
+        return mercury;
     };
 
     std::string Logger::getLevelName(Level level) {
