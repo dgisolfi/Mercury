@@ -4,6 +4,12 @@ Lightweight & Colorful Singleton logger
 
 ![example logs](./img/default_theme.png)
 
+## Adding to a Project
+
+This project uses [Quom](https://github.com/Viatorus/quom) to generate a single header file. The latest version of the file can be found [here](https://raw.githubusercontent.com/dgisolfi/Mercury/master/single_include/mercury.hpp). Add this file to your project's includes and start logging!
+
+
+
 ## Usage
 
 
@@ -125,6 +131,12 @@ t -> setInfo(mercury::Vector2 { COLOR_CODE, STYLE_CODE });
 |   Inverse   |   7   |
 
 
+
+## Packaging
+
+*Generates a new single header from source usion [Quom](https://github.com/Viatorus/quom)*
+
+`make package`
 
 ## Development
 

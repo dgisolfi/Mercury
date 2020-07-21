@@ -1,15 +1,5 @@
-/**
- * @file Theme.cpp
- *
- * @brief Theme functionality
- *
- * @author Daniel Nicolas Gisolfi
- * Contact: Daniel.Gisolfi1@marist.edu
- *
- */
+#include "theme.hpp" 
 
-#include "Theme.h" 
-#include <string> 
 
 #ifdef _WIN64
    #define THEME_SUPPORT false
@@ -99,17 +89,17 @@ namespace mercury {
         return t;
     };
 
-    void Theme::setIsTimestampEnabled(bool is_enabled){
-        Theme::is_timestamp_enabled = is_enabled;
+    void Theme::setIsTimestampVisibile(bool is_visible){
+        Theme::is_timestamp_visible = is_visible;
     };
 
-    bool Theme::getIsTimestampEnabled(){
-        return Theme::is_timestamp_enabled;
+    bool Theme::getIsTimestampVisibile(){
+        return Theme::is_timestamp_visible;
     };
 
     void Theme::setLevelNameLen(int len) {
-        if (len > 8 || len < 0) {
-            throw std::invalid_argument("Length must be between 0 and 8");
+        if (len > 8 || len < 1) {
+            throw std::invalid_argument("Length must be between 1 and 8");
         } else {
             Theme::level_name_len = len;
         };
