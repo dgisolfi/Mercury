@@ -9,16 +9,12 @@ DEV_IMAGE=mercury
 DEV_CONTAINER=$(DEV_IMAGE)-dev
 
 ifeq ($(OS),Windows_NT)
-EXECUTABLE	:= main.exe
+EXECUTABLE	:= mercury.exe
 SOURCEDIRS	:= $(SRC)
-INCLUDEDIRS	:= $(INCLUDE)
 else
-EXECUTABLE	:= main
+EXECUTABLE	:= mercury
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
-INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d)
 endif
-
-CINCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%))
 
 SOURCES		:= $(wildcard $(patsubst %,%/*.cpp, $(SOURCEDIRS)))
 OBJECTS		:= $(SOURCES:.cpp=.o)
@@ -49,7 +45,8 @@ package:
 ifeq (, $(shell which python3 2> /dev/null))
 	$(error python3 is needed to package Mercury)
 else
-	@echo "python3 -m quom $(SOURCES) mercury.hpp -s '~> stitch <~' -g MERCURY_.+_HPP"
+	@mkdir -p ./single_include
+	@python3 -m quom src/mercury.hpp single_include/mercury.hpp -g MERCURY_.+_HPP 
 endif
 
 
@@ -57,4 +54,4 @@ run: all
 	./$(BIN)/$(EXECUTABLE)
 
 $(BIN)/$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(CFLAGS) $(CINCLUDES) $^ -o $@ 
+	$(CC) $(CFLAGS) $^ -o $@ 

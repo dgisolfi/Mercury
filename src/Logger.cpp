@@ -1,16 +1,4 @@
-/**
- * @file Logger.cpp
- *
- * @brief Singleton Logging Class
- *
- * @author Daniel Nicolas Gisolfi
- * Contact: Daniel.Gisolfi1@marist.edu
- *
- */
-
-#include <iostream>
-#include <time.h>
-#include "Logger.h"
+#include "logger.hpp"
 
 
 namespace mercury {
@@ -19,39 +7,19 @@ namespace mercury {
     * PRIVATE
     */ 
    
-    /*
-    * info = [ "INFO", "WARN", "CRITICAL"]
-    * debug = info + [ "DEBUG" ]
-    * trace = debug + [ "TRACE" ]
-    * err => throws error and exits program
-    * off => disables logging
-    */ 
+    
     void Logger::log(Level level, std::string msg){
-        std::string l;
-
         if (Logger::getLevel() != Level::off) {
-         
-                switch (Logger::getLevel()) {
-                case Level::trace:
-                    if (Logger::inLevel(Level::trace, Level::err, level)) {
-                        l = Logger::buildLog(level, msg);
-                    }
-                    break; 
-                case Level::debug:
-                    if (Logger::inLevel(Level::debug, Level::err, level)) {
-                        l = Logger::buildLog(level, msg);
-                    }
-                    break;
-                case Level::info:
-                    if (Logger::inLevel(Level::info, Level::err, level)) {
-                        l = Logger::buildLog(level, msg);
-                    }
-                    break;
-            };
-        };
-        
-        if (!l.empty()) {
-            std::cout << l << std::endl;
+            /*
+            * info = [ "INFO", "WARN", "CRITICAL"]
+            * debug = info + [ "DEBUG" ]
+            * trace = debug + [ "TRACE" ]
+            * err => throws error and exits program
+            * off => disables logging
+            */ 
+            if (Logger::inLevel(Logger::getLevel(), Level::err, level)) {
+                std::cout << Logger::buildLog(level, msg) << std::endl;
+            }
         };
     };
 
@@ -68,7 +36,8 @@ namespace mercury {
     const std::string Logger::buildLog(Level level, std::string msg) {
         Theme *t = Logger::getTheme();
         std::string log;
-        if (t -> getIsTimestampEnabled()) {
+
+        if (t -> getIsTimestampVisibile()) {
             log += Logger::lTime() + t -> getSeperator();
         };
         
@@ -101,12 +70,8 @@ namespace mercury {
         return Logger::level;
     };
 
-    void Logger::setLevel(int l) {
-        Logger::level = static_cast<Level>(l);;
-    };
-
-    void Logger::setVerbose(bool v) {
-        Logger::verbose = v;
+    void Logger::setLevel(Level l) {
+        Logger::level = l;
     };
 
     Theme *Logger::getTheme() { return Logger::theme; };

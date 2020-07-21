@@ -1,12 +1,7 @@
-/**
- * @file Level.h
- *
- * @brief Logging Levels for Mecury
- *
- * @author Daniel Nicolas Gisolfi
- * Contact: Daniel.Gisolfi1@marist.edu
- *
- */
+#pragma once 
+
+#ifndef MERCURY_LEVEL_HPP
+#define MERCURY_LEVEL_HPP
 
 #define LEVEL_TRACE 0
 #define LEVEL_DEBUG 1
@@ -44,3 +39,5 @@ namespace mercury {
         "OFF     "
     };
 };
+
+#endif // MERCURY_LEVEL_HPP
