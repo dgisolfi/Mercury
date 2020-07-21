@@ -6,7 +6,7 @@ Lightweight & Colorful Singleton logger
 
 ## Adding to a Project
 
-This project uses [Quom](https://github.com/Viatorus/quom) to generate a single header file. The latest version of the file can be found [here](). Add this file to your project's includes and start logging!
+This project uses [Quom](https://github.com/Viatorus/quom) to generate a single header file. The latest version of the file can be found [here](https://raw.githubusercontent.com/dgisolfi/Mercury/master/single_include/mercury.hpp). Add this file to your project's includes and start logging!
 
 
 

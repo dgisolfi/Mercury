@@ -25,6 +25,7 @@ all: $(BIN)/$(EXECUTABLE)
 clean:
 	-$(RM) $(BIN)/$(EXECUTABLE)
 	-$(RM) $(OBJECTS)
+	-$(RM) ./single_include/mercury.hpp
 
 .PHONY: clean-dev
 clean-dev:
