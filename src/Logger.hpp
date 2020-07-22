@@ -17,7 +17,11 @@ namespace mercury {
     class Logger {
         
     private:
-        Logger() {
+        Logger(): level(Level::debug) {
+            theme = new Theme();
+            log(Level::debug, "Mercury Enabled");
+        }
+        Logger(Level l): level(l) {
             theme = new Theme();
             log(Level::debug, "Mercury Enabled");
         }
@@ -25,12 +29,13 @@ namespace mercury {
             delete theme;
         }
 
-        Theme *theme;
-
+        Level level;
         // The single instance
         static Logger mercury;
-        Level level = Level::info;
+ 
+        Theme *theme;
 
+        
         /**
          * Logs messages according to Logging Level.
          *

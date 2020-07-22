@@ -138,6 +138,10 @@ t -> setInfo(mercury::Vector2 { COLOR_CODE, STYLE_CODE });
 
 `make package`
 
+## Test
+
+`make test`
+
 ## Development
 
 `make dev`
