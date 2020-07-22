@@ -3,6 +3,7 @@ CFLAGS	:= -std=c++17 -Wall -Wextra -g
 
 BIN		:= bin
 SRC		:= src
+TEST    := test
 INCLUDE	:= include
 
 DEV_IMAGE=mercury
@@ -14,9 +15,11 @@ SOURCEDIRS	:= $(SRC)
 else
 EXECUTABLE	:= mercury
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
+TESTDIRS	:= $(shell find $(TEST) -type d)
 endif
 
 SOURCES		:= $(wildcard $(patsubst %,%/*.cpp, $(SOURCEDIRS)))
+TESTS       := ./test/test_mercury.cpp
 OBJECTS		:= $(SOURCES:.cpp=.o)
 
 all: $(BIN)/$(EXECUTABLE)
@@ -25,7 +28,6 @@ all: $(BIN)/$(EXECUTABLE)
 clean:
 	-$(RM) $(BIN)/$(EXECUTABLE)
 	-$(RM) $(OBJECTS)
-	-$(RM) ./single_include/mercury.hpp
 
 .PHONY: clean-dev
 clean-dev:
@@ -50,6 +52,10 @@ else
 	@python3 -m quom src/mercury.hpp single_include/mercury.hpp -g MERCURY_.+_HPP 
 endif
 
+.PHONY: test
+test:
+	$(CC) $(CFLAGS) $(TESTS) -I single_include -o ./bin/test 
+	@./$(BIN)/test
 
 run: all
 	./$(BIN)/$(EXECUTABLE)
